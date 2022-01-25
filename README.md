@@ -1,4 +1,4 @@
 <h1 align="center"> DSA-Using-CPP </h1>
 
-<p> A repository for learning purpose. Along the journey of learning the Data Structures and Algorithms using C++ this repo will hold all learning resources and code snipets that I'll be using.
+<p> On a long run to master C++ programming concepts this repository is for learning purpose. It holds all code snippets and reference materials used while learning the Data Structures and Algorithms in C++ plus some random solution to Competitive programming questions from Different platforms.
 </p>
