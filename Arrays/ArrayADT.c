@@ -22,6 +22,26 @@ void Display(struct Array arr)
     }
 }
 
+// Appending
+void Append(struct Array *arr, int num)
+{
+    if (arr->length < arr->size)
+        arr->Arr[arr->length++] = num;
+}
+
+// Inserting
+void Insert(struct Array *arr, int index, int num)
+{
+    int i;
+    if (index >= 0 && index <= arr->length)
+    {
+        for (i = arr->length; i > index; i--)
+            arr->Arr[i] = arr->Arr[i - 1];
+        arr->Arr[index] = num;
+        arr->length++;
+    }
+}
+
 int main()
 {
     int n, i;
@@ -41,7 +61,9 @@ int main()
     }
 
     arr.length = n;
-
+    Append(&arr, 10);
+    //inserting
+    Insert(&arr, 5, 11);
     Display(arr);
 
     free(arr.Arr);
