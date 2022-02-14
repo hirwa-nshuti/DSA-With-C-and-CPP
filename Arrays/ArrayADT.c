@@ -53,6 +53,19 @@ void Delete(struct Array *arr, int index)
         arr->length--;
     }
 }
+
+// Performing Linear Search on Array
+int LinearSearch(struct Array *arr, int key)
+{
+    int i;
+    for (i = 0; i < arr->length; i++)
+    {
+        if (arr->Arr[i] == key)
+            return i;
+    }
+    return -1;
+}
+
 int main()
 {
     int n, i;
@@ -79,7 +92,12 @@ int main()
     // Delete at index 0
     Delete(&arr, 0);
     Display(arr);
-
+    printf("\nPerforming the linear Search:\n");
+    int index = LinearSearch(&arr, 10);
+    if (index == -1)
+        printf("element not found\n");
+    else
+        printf("element found at %d", index);
     free(arr.Arr);
     return 0;
 }
