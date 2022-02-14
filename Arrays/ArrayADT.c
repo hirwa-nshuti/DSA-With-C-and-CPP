@@ -42,6 +42,17 @@ void Insert(struct Array *arr, int index, int num)
     }
 }
 
+// Item Deletion
+void Delete(struct Array *arr, int index)
+{
+    int i;
+    if (index >= 0 && index <= arr->length)
+    {
+        for (i = index; i < arr->length - 1; i++)
+            arr->Arr[i] = arr->Arr[i + 1];
+        arr->length--;
+    }
+}
 int main()
 {
     int n, i;
@@ -62,8 +73,11 @@ int main()
 
     arr.length = n;
     Append(&arr, 10);
-    //inserting
+    // inserting
     Insert(&arr, 5, 11);
+
+    // Delete at index 0
+    Delete(&arr, 0);
     Display(arr);
 
     free(arr.Arr);
