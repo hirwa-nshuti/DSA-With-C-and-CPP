@@ -66,6 +66,7 @@ int LinearSearch(struct Array *arr, int key)
     return -1;
 }
 
+// Performing Binary Search
 int BinarySearch(struct Array *arr, int key)
 {
     int low = 0;
@@ -83,6 +84,49 @@ int BinarySearch(struct Array *arr, int key)
     }
     return -1;
 }
+
+// Getting a variable at a given index
+int Get(struct Array *arr, int index)
+{
+    if (index <= arr->length && index >= 0)
+        return arr->Arr[index];
+    return 0;
+}
+
+// Setting a variable at Index to a given value
+void Set(struct Array *arr, int index, int val)
+{
+    if (index <= arr->length && index >= 0)
+        arr->Arr[index] = val;
+}
+
+// Finding Maximum in array
+int Max(struct Array *arr)
+{
+    int i, max = arr->Arr[0];
+    for (i = 1; i < arr->length; i++)
+    {
+        if (max < arr->Arr[i])
+            max = arr->Arr[i];
+    }
+
+    return max;
+}
+
+// Finding minimum in array
+
+int Min(struct Array *arr)
+{
+    int i, min = arr->Arr[0];
+    for (i = 1; i < arr->length; i++)
+    {
+        if (min > arr->Arr[i])
+            min = arr->Arr[i];
+    }
+
+    return min;
+}
+
 
 int main()
 {
@@ -105,24 +149,35 @@ int main()
     arr.length = n;
     Append(&arr, 10);
     // inserting
-    Insert(&arr, 5, 11);
+    Insert(&arr, 5, 12);
 
     // Delete at index 0
     Delete(&arr, 0);
+
+    // Set Method
+    Set(&arr, 2, 34);
     Display(arr);
+    // Linear Search
     printf("\nPerforming the linear Search:\n");
     int index = LinearSearch(&arr, 10);
     if (index == -1)
         printf("element not found\n");
     else
         printf("element found at %d", index);
-
+    // Binary Search
     printf("\nPerforming the Binary Search:\n");
     index = BinarySearch(&arr, 11);
     if (index == -1)
         printf("element not found\n");
     else
         printf("element found at %d", index);
+
+    // Using Get method
+    int found = Get(&arr, 4);
+    printf("\nElement at index 4 is %d", found);
+
+    printf("\nThe minimum element of the array is %d", Min(&arr));
+    printf("\nThe maximum element of the array is %d", Max(&arr));
     free(arr.Arr);
     return 0;
 }
