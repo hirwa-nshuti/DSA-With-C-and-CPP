@@ -12,13 +12,13 @@ struct Array
     int length;
 };
 
-void Display(struct Array arr)
+void Display(struct Array *arr)
 {
     int i;
     printf("Elements of array are:\n");
-    for (i = 0; i < arr.length; i++)
+    for (i = 0; i < arr->length; i++)
     {
-        printf("%d ", arr.Arr[i]);
+        printf("%d ", arr->Arr[i]);
     }
 }
 
@@ -127,6 +127,18 @@ int Min(struct Array *arr)
     return min;
 }
 
+// Reversing an Array
+void Reverse(struct Array *arr)
+{
+    int i, j;
+    for (i = 0, j = arr->length - 1; i < j; i++, j--)
+    {
+        arr->Arr[i] = arr->Arr[i] + arr->Arr[j];
+        arr->Arr[j] = arr->Arr[i] - arr->Arr[j];
+        arr->Arr[i] = arr->Arr[i] - arr->Arr[j];
+    }
+}
+
 
 int main()
 {
@@ -156,7 +168,7 @@ int main()
 
     // Set Method
     Set(&arr, 2, 34);
-    Display(arr);
+    Display(&arr);
     // Linear Search
     printf("\nPerforming the linear Search:\n");
     int index = LinearSearch(&arr, 10);
@@ -178,6 +190,11 @@ int main()
 
     printf("\nThe minimum element of the array is %d", Min(&arr));
     printf("\nThe maximum element of the array is %d", Max(&arr));
+
+    // Reversing
+    printf("\nThe Reversed Array is:\n");
+    Reverse(&arr);
+    Display(&arr);
     free(arr.Arr);
     return 0;
 }
