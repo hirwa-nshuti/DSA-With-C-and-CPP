@@ -66,6 +66,24 @@ int LinearSearch(struct Array *arr, int key)
     return -1;
 }
 
+int BinarySearch(struct Array *arr, int key)
+{
+    int low = 0;
+    int high = arr->length;
+    while (low <= high)
+    {
+        int mid = (low + high) / 2;
+
+        if (arr->Arr[mid] == key)
+            return mid;
+        else if (arr->Arr[mid] < key)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+    return -1;
+}
+
 int main()
 {
     int n, i;
@@ -94,6 +112,13 @@ int main()
     Display(arr);
     printf("\nPerforming the linear Search:\n");
     int index = LinearSearch(&arr, 10);
+    if (index == -1)
+        printf("element not found\n");
+    else
+        printf("element found at %d", index);
+
+    printf("\nPerforming the Binary Search:\n");
+    index = BinarySearch(&arr, 11);
     if (index == -1)
         printf("element not found\n");
     else
