@@ -208,6 +208,29 @@ void MoveNegative(struct Array *arr)
     }
 }
 
+struct Array *Merge(struct Array *arr1, struct Array *arr2)
+{
+    int i, j, k;
+    i = j = k = 0;
+    struct Array *arr3;
+    arr3->length = arr1->length + arr2->length;
+    arr3->size = arr1->size + arr2->size;
+    arr3->Arr = (int *)malloc(arr3->size * sizeof(int));
+    while (i < arr1->length && j < arr2->length)
+    {
+        if (arr1->Arr[i] < arr2->Arr[j])
+            arr3->Arr[k++] = arr1->Arr[i++];
+        else
+            arr3->Arr[k++] = arr2->Arr[j++];
+    }
+    for (; i < arr1->length; i++)
+        arr3->Arr[k++] = arr1->Arr[i++];
+    for (; j < arr2->length; j++)
+        arr3->Arr[k++] = arr2->Arr[j++];
+
+    return arr3;
+}
+
 int main()
 {
     int n, i;
@@ -267,12 +290,11 @@ int main()
     printf("\nThe Reversed Array is:\n");
     Reverse(&arr);
     Display(&arr);
-    arr2 = arr;
-    free(arr.Arr);
+    // Start New section
     printf("\e[1;1H\e[2J");
     printf("Enter size of second array: ");
     scanf("%d", &arr2.size);
-    arr.Arr = (int *)malloc(arr.size * sizeof(int));
+    arr2.Arr = (int *)malloc(arr.size * sizeof(int));
     printf("Enter the number of elements: ");
     scanf("%d", &arr2.length);
     printf("Enter all Elements for Second Array\n");
@@ -293,6 +315,14 @@ int main()
     MoveNegative(&arr);
     printf("\nAfter Moving Positive and negatives:\n");
     Display(&arr2);
+    struct Array *arr3;
+    arr3 = Merge(&arr, &arr2);
+    printf("\nBefore merge Arr1:\n");
+    Display(&arr);
+    printf("\nBefore Merger Arr2\n");
+    Display(&arr2);
+    printf("\nAfter Merging:\n");
+    Display(arr3);
     free(arr2.Arr);
     return 0;
 }
