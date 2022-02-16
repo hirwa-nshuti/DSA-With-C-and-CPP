@@ -4,6 +4,7 @@ Implementing array ADT
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 struct Array
 {
@@ -27,6 +28,14 @@ void Append(struct Array *arr, int num)
 {
     if (arr->length < arr->size)
         arr->Arr[arr->length++] = num;
+}
+
+// Swapping
+void Swap(int *x, int *y)
+{
+    *x = *x + *y;
+    *y = *x - *y;
+    *x = *x - *y;
 }
 
 // Inserting
@@ -154,10 +163,53 @@ void LeftRotate(struct Array *arr, int rotations)
     }
 }
 
+// Cheching if Array is Sorted
+bool IsSorted(struct Array *arr)
+{
+    int i;
+    for (i = 0; i < arr->length; i++)
+    {
+        if (arr->Arr[i] > arr->Arr[i + 1])
+            return false;
+    }
+    return true;
+}
+
+// Inserting in a Sorted Array
+void InsertSorted(struct Array *arr, int val)
+{
+    int i = arr->length - 1;
+    if(IsSorted(arr))
+    {
+        while (val < arr->Arr[i])
+        {
+            arr->Arr[i + 1] = arr->Arr[i];
+            i--;
+        }
+
+        arr->Arr[i + 1] = val;
+        arr->length++;
+    }
+}
+
+// Moving Negative Values to left and Positive to the right
+void MoveNegative(struct Array *arr)
+{
+    int i = 0, j = arr->length - 1;
+    while (i < j)
+    {
+        while (arr->Arr[i] < 0) i++;
+        while (arr->Arr[j] > 0)j--;
+    
+        if(i < j)
+            Swap(&arr->Arr[i], &arr->Arr[j]);
+    }
+}
+
 int main()
 {
     int n, i;
-    struct Array arr;
+    struct Array arr, arr2;
     printf("Enter size of array: ");
     scanf("%d", &arr.size);
     arr.Arr = (int *)malloc(arr.size * sizeof(int));
@@ -213,6 +265,32 @@ int main()
     printf("\nThe Reversed Array is:\n");
     Reverse(&arr);
     Display(&arr);
+    arr2 = arr;
     free(arr.Arr);
+    printf("\e[1;1H\e[2J");
+    printf("Enter size of second array: ");
+    scanf("%d", &arr2.size);
+    arr.Arr = (int *)malloc(arr.size * sizeof(int));
+    printf("Enter the number of elements: ");
+    scanf("%d", &arr2.length);
+    printf("Enter all Elements for Second Array\n");
+    for (i = 0; i < arr2.length; i++)
+    {
+        printf("element - %d : ", i);
+        scanf("%d", &arr2.Arr[i]);
+    }
+    printf("The second array is:\n");
+    Display(&arr2);
+
+    //Inserting a number in Sorted
+    InsertSorted(&arr2, 7);
+    printf("\nAfter inserting in Sorted array:\n");
+    Display(&arr2);
+
+    // Moving Negative to left and Positives to right
+    MoveNegative(&arr);
+    printf("\nAfter Moving Positive and negatives:\n");
+    Display(&arr2);
+    free(arr2.Arr);
     return 0;
 }
