@@ -179,7 +179,7 @@ bool IsSorted(struct Array *arr)
 void InsertSorted(struct Array *arr, int val)
 {
     int i = arr->length - 1;
-    if(IsSorted(arr))
+    if (IsSorted(arr))
     {
         while (val < arr->Arr[i])
         {
@@ -198,10 +198,12 @@ void MoveNegative(struct Array *arr)
     int i = 0, j = arr->length - 1;
     while (i < j)
     {
-        while (arr->Arr[i] < 0) i++;
-        while (arr->Arr[j] > 0)j--;
-    
-        if(i < j)
+        while (arr->Arr[i] < 0)
+            i++;
+        while (arr->Arr[j] > 0)
+            j--;
+
+        if (i < j)
             Swap(&arr->Arr[i], &arr->Arr[j]);
     }
 }
@@ -282,7 +284,7 @@ int main()
     printf("The second array is:\n");
     Display(&arr2);
 
-    //Inserting a number in Sorted
+    // Inserting a number in Sorted
     InsertSorted(&arr2, 7);
     printf("\nAfter inserting in Sorted array:\n");
     Display(&arr2);
