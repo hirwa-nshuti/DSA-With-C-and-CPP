@@ -139,6 +139,20 @@ void Reverse(struct Array *arr)
     }
 }
 
+// Left Rotation
+void LeftRotate(struct Array *arr, int rotations)
+{
+    int i;
+    while (rotations--)
+    {
+        int temp = arr->Arr[0];
+        for (i = 0; i < arr->length - 1; i++)
+        {
+            arr->Arr[i] = arr->Arr[i + 1];
+        }
+        arr->Arr[arr->length - 1] = temp;
+    }
+}
 
 int main()
 {
@@ -191,6 +205,10 @@ int main()
     printf("\nThe minimum element of the array is %d", Min(&arr));
     printf("\nThe maximum element of the array is %d", Max(&arr));
 
+    // Left rotate by 2
+    LeftRotate(&arr, 2);
+    printf("\nAfter two rotations we get:\n");
+    Display(&arr);
     // Reversing
     printf("\nThe Reversed Array is:\n");
     Reverse(&arr);
