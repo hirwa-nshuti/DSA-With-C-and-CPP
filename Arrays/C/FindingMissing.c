@@ -1,3 +1,6 @@
+/*
+Finding the missing value in a Sorted array
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include "Arrayadt.h"
@@ -25,6 +28,22 @@ int FindMissStart(struct Array *arr)
     }
 }
 
+void FindingMultiple(struct Array *arr)
+{
+    int diff, i;
+    diff = arr->Arr[0];
+    for (i = 0; i < arr->length; i++)
+    {
+        if ((arr->Arr[i] - 1) != diff)
+        {
+            while (diff < arr->Arr[i] - i)
+            {
+                printf("%d\n", i + diff);
+                diff++;
+            }
+        }
+    }
+}
 
 int main()
 {
@@ -47,9 +66,12 @@ int main()
     arr.length = n;
     printf("Before any operation to the array\n");
     Display(&arr);
-    // Finding the missing
+    // Finding the missing when sequence is from 0
     printf("\nThe missing element is : %d", findMissing(&arr));
+    // Finding the missing when sequence is from a certain number
     printf("\nMissing element is : %d", FindMissStart(&arr));
+    // Finding multiple missing elements
+    FindingMultiple(&arr);
     free(arr.Arr);
     return 0;
 }
