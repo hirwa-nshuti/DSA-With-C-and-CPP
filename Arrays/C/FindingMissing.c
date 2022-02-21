@@ -27,7 +27,7 @@ int FindMissStart(struct Array *arr)
             return arr->Arr[0] + i;
     }
 }
-
+// Finding multiple missing elements in sorted array
 void FindingMultiple(struct Array *arr)
 {
     int diff, i;
@@ -43,6 +43,27 @@ void FindingMultiple(struct Array *arr)
             }
         }
     }
+}
+// Finding missing element in Unsorted array.
+void FindMissUnsorted(struct Array *arr)
+{
+    int low = Min(arr);
+    int high = Max(arr);
+    int i;
+    struct Array *arr2 = (struct Array *)malloc(sizeof(struct Array));
+    arr2->size = arr->size;
+    arr2->length = (high - low) + 1;
+    for (i = 0; i < arr2->length; i++)
+        arr2->Arr[i] = 0;
+    for (i = 0; i < arr->length; i++)
+        arr2->Arr[arr->Arr[i]]++;
+    for (i = low; i <= high; i++)
+    {
+        if (arr2->Arr[i] == 0)
+            printf("%d, ", i);
+    }
+
+    free(arr2->Arr);
 }
 
 int main()
@@ -66,12 +87,14 @@ int main()
     arr.length = n;
     printf("Before any operation to the array\n");
     Display(&arr);
-    // Finding the missing when sequence is from 0
-    printf("\nThe missing element is : %d", findMissing(&arr));
+    Finding the missing when sequence is from 0 printf("\nThe missing element is : %d", findMissing(&arr));
     // Finding the missing when sequence is from a certain number
     printf("\nMissing element is : %d", FindMissStart(&arr));
     // Finding multiple missing elements
     FindingMultiple(&arr);
+    // Finding Missi elements in Unsorted array
+    printf("\nThe missing elements are: ");
+    FindMissUnsorted(&arr);
     free(arr.Arr);
     return 0;
 }

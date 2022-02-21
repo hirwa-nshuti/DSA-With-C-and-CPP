@@ -21,32 +21,6 @@ void Set(struct Array *arr, int index, int val)
         arr->Arr[index] = val;
 }
 
-// Finding Maximum in array
-int Max(struct Array *arr)
-{
-    int i, max = arr->Arr[0];
-    for (i = 1; i < arr->length; i++)
-    {
-        if (max < arr->Arr[i])
-            max = arr->Arr[i];
-    }
-
-    return max;
-}
-
-// Finding minimum in array
-int Min(struct Array *arr)
-{
-    int i, min = arr->Arr[0];
-    for (i = 1; i < arr->length; i++)
-    {
-        if (min > arr->Arr[i])
-            min = arr->Arr[i];
-    }
-
-    return min;
-}
-
 int main()
 {
     int n, i;
