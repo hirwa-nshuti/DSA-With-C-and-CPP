@@ -58,6 +58,8 @@ public:
     void Reverse();
     void LeftRotate(int rots);
     void MoveNegatives();
+    void FindDuplicates();
+    void CountDuplicates();
     T Delete(int index);
     T LinearSearch(T val);
     T BinarySearch(T val);
@@ -277,6 +279,39 @@ Array<T> *Array<T>::Merge(Array<T> arr2)
     return arr3;
 }
 
+// Finding Duplicates
+template <class T>
+void Array<T>::FindDuplicates()
+{
+    int i, las_dup = -1;
+    for (i = 0; i < length-1; i++)
+    {
+        if (Arr[i] == Arr[i + 1] && Arr[i] != las_dup)
+        {
+            cout << Arr[i] << " ";
+            las_dup = Arr[i];
+        }
+    }
+}
+
+// Counting Duplicates
+template <class T>
+void Array<T>::CountDuplicates()
+{
+    int i, j;
+    for(i = 0; i < lenght-1; i++)
+    {
+        if(Arr[i] == Arr[i+1])
+        {
+            j = i + 1;
+            while(Arr[j] == Arr[i])
+                j++;
+            cout << "Element " << Arr[i] << " is Duplicated " << j - i << " times\n";
+            i = j - 1;
+        }
+    }
+}
+
 // Driver Code
 int main()
 {
@@ -307,8 +342,11 @@ int main()
         cout << "13. Return Max\n";
         cout << "14. Minimum\n";
         cout << "15. Merger Two arrays\n";
+        cout << "16. Find Duplicates\n";
+        cout << "17. Find Duplicates\n";
         cout << "0. Ending the program\n";
         cout << "\nEnter your Choice: ";
+
         cin >> choice;
         switch (choice)
         {
@@ -384,11 +422,18 @@ int main()
             cout << "Merged Array is : \n";
             arr3->Display();
             break;
-
+        case 16:
+            cout << "Duplicates in an array are: ";
+            arr1->FindDuplicates();
+            break;
+        case 17: 
+            Cout << "Counting Duplicates\n";
+            arr1->CountDuplicates();
+            break;
         default:
             break;
         }
-    } while (choice < 16 && choice > 0);
+    } while (choice < 18 && choice > 0);
 
     return 0;
 }
