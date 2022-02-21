@@ -284,7 +284,7 @@ template <class T>
 void Array<T>::FindDuplicates()
 {
     int i, las_dup = -1;
-    for (i = 0; i < length-1; i++)
+    for (i = 0; i < length - 1; i++)
     {
         if (Arr[i] == Arr[i + 1] && Arr[i] != las_dup)
         {
@@ -299,12 +299,12 @@ template <class T>
 void Array<T>::CountDuplicates()
 {
     int i, j;
-    for(i = 0; i < lenght-1; i++)
+    for (i = 0; i < length - 1; i++)
     {
-        if(Arr[i] == Arr[i+1])
+        if (Arr[i] == Arr[i + 1])
         {
             j = i + 1;
-            while(Arr[j] == Arr[i])
+            while (Arr[j] == Arr[i])
                 j++;
             cout << "Element " << Arr[i] << " is Duplicated " << j - i << " times\n";
             i = j - 1;
@@ -426,8 +426,8 @@ int main()
             cout << "Duplicates in an array are: ";
             arr1->FindDuplicates();
             break;
-        case 17: 
-            Cout << "Counting Duplicates\n";
+        case 17:
+            cout << "Counting Duplicates\n";
             arr1->CountDuplicates();
             break;
         default:
