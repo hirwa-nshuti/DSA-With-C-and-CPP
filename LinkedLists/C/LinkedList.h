@@ -5,6 +5,9 @@ Implementing Linked List using C language
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifndef LinkedList
+#define LinkedList
+
 struct Node
 {
     int data;
@@ -39,15 +42,5 @@ void DisplayLL(struct Node *LL)
     }
     printf("Null");
 }
-int main()
-{
-    int *Arr = (int *)malloc(5 * sizeof(int));
-    Arr[0] = 3;
-    Arr[1] = 4;
-    Arr[2] = 8;
-    Arr[3] = 9;
-    Arr[4] = 19;
-    CreateLL(Arr, 5);
-    DisplayLL(first);
-    return 0;
-}
+
+#endif
