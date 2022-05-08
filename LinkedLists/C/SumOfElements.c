@@ -41,6 +41,7 @@ int main()
     Arr[4] = 19;
     CreateLL(Arr, 5);
     DisplayLL(first);
+    free(Arr);
     int nodes = count(first);
     printf("\nThe number of nodes in a linked list is %d", nodes);
     int sum = add(first);
