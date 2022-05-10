@@ -7,7 +7,8 @@ The repository for Data Structures and algorithms using C/C++. Designed to help 
 |Sr.| Topic name         |
 |---|--------------------|
 |1.| [Arrays](./Arrays/)|
-|2.| [Recursion](./Recursion/)
+|2.| [Recursion](./Recursion/)|
+|3.| [Linked Lists](./LinkedLists/)|
 
 ## Resources and books used
 
